@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ref, onMounted } from "vue";
-  import Counter from "@flyle/svelte/Counter";
+  import { Counter } from "@flyle/svelte";
 
   const svelteWrapper = ref<HTMLElement | null>(null);
   onMounted(() => {

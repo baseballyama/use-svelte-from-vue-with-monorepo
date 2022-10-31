@@ -5,8 +5,12 @@ import {
   readdirSync,
   statSync,
   copyFileSync,
+  writeFileSync,
+  readFileSync,
   constants,
 } from "node:fs";
+import { entry } from "./constants.js";
+import * as ts from "typescript";
 
 const createTypes = async (tempDir: string) => {
   await emitDts({
@@ -28,9 +32,19 @@ const getFiles = (dir: string) => {
   return result;
 };
 
+const createEntryFile = () => {
+  const entryFile = Object.keys(entry).map((key) => {
+    return `export { default as ${key} } from "./${key}";`;
+  });
+  const str = entryFile.join("\r");
+  writeFileSync("./dist/main.js", str);
+  writeFileSync("./dist/main.d.ts", str);
+};
+
 (async () => {
   const tempDir = mkdtempSync("./");
   try {
+    // Generate types for Svelte components
     await createTypes(tempDir);
     const distFiles = getFiles("./dist");
     const distJsFiles = distFiles.filter((f) => f.endsWith(".js"));
@@ -50,6 +64,10 @@ const getFiles = (dir: string) => {
         constants.COPYFILE_FICLONE
       );
     });
+
+    createEntryFile();
+  } catch (e) {
+    console.error(e);
   } finally {
     rmSync(tempDir, { recursive: true, force: true });
   }

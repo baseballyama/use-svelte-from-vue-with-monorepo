@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { entry } from "./scripts/constants";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,9 +11,7 @@ export default defineConfig({
     sourcemap: true,
     minify: true,
     lib: {
-      entry: {
-        Counter: "./src/lib/Counter.svelte",
-      },
+      entry: entry,
       formats: ["es", "cjs"],
     },
   },
