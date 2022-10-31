@@ -1,0 +1,35 @@
+{
+  "name": "@flyle/svelte",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./Counter": {
+      "types": "./dist/Counter.d.ts",
+      "import": "./dist/Counter.js",
+      "require": "./dist/Counter.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build:watch": "vite build --watch",
+    "prebuild": "rm -rf ./dist",
+    "build": "vite build",
+    "postbuild": "node --loader ts-node/esm scripts/postbuild.ts",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.1.0",
+    "@tsconfig/svelte": "^3.0.0",
+    "svelte": "^3.52.0",
+    "svelte-check": "^2.9.2",
+    "svelte-preprocess": "^4.10.7",
+    "svelte2tsx": "^0.5.20",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.0"
+  }
+}

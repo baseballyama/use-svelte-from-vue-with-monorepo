@@ -1,0 +1,27 @@
+{
+  "name": "vite-monorepo-hmr",
+  "version": "0.0.0",
+  "description": "This is trial that Vite with monorepo can use HMR",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baseballyama/vite-monorepo-hmr.git"
+  },
+  "author": "baseballyama",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/baseballyama/vite-monorepo-hmr/issues"
+  },
+  "homepage": "https://github.com/baseballyama/vite-monorepo-hmr#readme",
+  "workspaces": [
+    "packages/svelte",
+    "packages/vue"
+  ],
+  "engines": {
+    "node": ">=16",
+    "npm": ">=8.3"
+  }
+}
